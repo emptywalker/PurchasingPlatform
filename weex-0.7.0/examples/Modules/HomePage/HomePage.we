@@ -1,6 +1,10 @@
 <template>
 	<div style="background-color:red">
+		<input type="text" value="我是首页的输入框" placeholder="等待你的输入...." style="width: 500; height:50; ">
+		<hr></hr>
 		<text class='textq'>这是我 dasdas     的首页</text>
+
+		<image-one></image-one>
 	</div>
 </template>
 
@@ -15,3 +19,17 @@
 		background-color: #00f;
 	}
 </style>
+<script>
+	require("../components/images-component/image-one.we");
+	module.exports = {
+
+
+		//相当于ready
+		created: function () {
+			// body...
+			var util = require("../../util.js");
+			// console.log( "-------------"+util.serverPath());
+			console.log('this is created fun execute time' + util);
+		}
+	}
+</script>

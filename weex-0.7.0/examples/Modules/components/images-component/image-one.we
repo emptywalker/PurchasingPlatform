@@ -1,0 +1,33 @@
+<template>
+	<div style="background-color:green">
+		<image src="{{image}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
+		<text>{{title }}{{$getConfig().env.deviceWidth}}</text>
+	</div>
+</template>
+
+<style>
+	.imageClass{
+		/*width: 750;*/
+		/*height: 350;*/
+		background-color:#ccc;
+	}
+</style>
+
+<script>
+	module.exports = {
+		data:{
+			image: "http://pic.toomao.com/6702cc94ab6a975db74fc5e5a9138e53cb8fb8b3",
+			title: " The First Define Component",
+			widthHeight: 20,
+		},
+		created: function () {
+			var config = this.$getConfig();
+			console.log(config);
+			var configJSON = JSON.stringify(config, null, 2);
+			// var env = JSON.stringify(config.env);
+			console.log(configJSON.env.deviceWidth + '-----'+configJSON);
+
+			widthHeight = configJSON.env.deviceWidth / 2.0;
+		}
+	}
+</script>
