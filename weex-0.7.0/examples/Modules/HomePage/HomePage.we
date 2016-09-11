@@ -1,0 +1,17 @@
+<template>
+	<div style="background-color:red">
+		<text class='textq'>这是我 dasdas     的首页</text>
+	</div>
+</template>
+
+<style>
+	.textq {
+		padding-top: 100;
+		padding-bottom: 100;
+		font-size: 50;
+		color: #0f0;
+		text-align: center;
+		/*line-height: 500;*/
+		background-color: #00f;
+	}
+</style>

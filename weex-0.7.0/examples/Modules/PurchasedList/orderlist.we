@@ -1,0 +1,15 @@
+<template>
+	<div style="background-color:red">
+		<text class='textq'>这是我的订单</text>
+	</div>
+</template>
+
+<style>
+	.textq {
+		font-size: 50;
+		color: #0f0;
+		text-align: center;
+		line-height: 500;
+		background-color: #eee00f;
+	}
+</style>

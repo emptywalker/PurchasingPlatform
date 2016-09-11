@@ -1,0 +1,15 @@
+<template>
+	<div style="background-color:red">
+		<text class='textq'>我    的</text>
+	</div>
+</template>
+
+<style>
+	.textq {
+		font-size: 50;
+		color: #0f0;
+		text-align: center;
+		line-height: 500;
+		background-color: #0f0a0f;
+	}
+</style>

@@ -1,0 +1,104 @@
+<template>
+  <div style="flex-direction: column;">
+    <wxc-tabbar tab-items = {{tabItems}} selected-color='#B41800' unselected-color='black'></wxc-tabbar>
+  </div>
+</template>
+
+<script>
+  require('weex-components');
+  module.exports = {
+    data: {
+      dir: 'examples',
+      tabItems: [
+        {
+          index: 0,
+          title: '首页',
+          titleColor: '#000000',
+          icon: '',
+          image: 'http://pic.toomao.com/6702cc94ab6a975db74fc5e5a9138e53cb8fb8b3',
+          selectedImage: 'http://pic.toomao.com/44319d2c4500ae62fd999f83169e564356f706b4',
+          src: 'Modules/HomePage/HomePage.js',
+          visibility: 'visible',
+        },
+        {
+          index: 1,
+          title: '分类',
+          titleColor: '#000000',
+          icon: '',
+          image: 'http://pic.toomao.com/899502808af6b08decb6664eeff98c07c846fb7a',
+          selectedImage: 'http://pic.toomao.com/6c4bb399ba853737408d55b47775f2c89a2ecab1',
+          src: 'Modules/KindList/kindlist.js',
+          visibility: 'visible',
+        },
+        {
+          index: 2,
+          title: '进货单',
+          titleColor: '#000000',
+          icon: '',
+          image: 'http://pic.toomao.com/066b6b5e50d4bd608a79ef7110328feb765eeaaf',
+          selectedImage: 'http://pic.toomao.com/07ea87f154c617f0ad7f075ccfd9e3a6e12d7a03',
+          src: 'Modules/PurchasedList/orderlist.js',
+          visibility: 'hidden',
+        },
+        {
+          index: 3,
+          title: '我的',
+          titleColor: '#000000',
+          icon: '',
+          image: 'http://pic.toomao.com/abfe9b8db0a54ea9bf80a2205e63e5617a551680',
+          selectedImage: 'http://pic.toomao.com/7a9c3ae01eeea5ea960eee84f743fbc7a0cb8f07',
+          src: 'Modules/Mine/mine.js',
+          visibility: 'hidden',
+        }
+      ],
+    },
+
+    created: function() {
+        var bundleUrl = this.$getConfig().bundleUrl;
+        console.log('hit', bundleUrl);
+        var nativeBase;
+        var isAndroidAssets = bundleUrl.indexOf('file://assets/') >= 0;
+        var isiOSAssets = bundleUrl.indexOf('file:///') >= 0 && bundleUrl.indexOf('WeexDemo.app') > 0;
+        if (isAndroidAssets) {
+          nativeBase = 'file://assets/';
+        }
+        else if (isiOSAssets) {
+          // file:///var/mobile/Containers/Bundle/Application/{id}/WeexDemo.app/
+          // file:///Users/{user}/Library/Developer/CoreSimulator/Devices/{id}/data/Containers/Bundle/Application/{id}/WeexDemo.app/
+          nativeBase = bundleUrl.substring(0, bundleUrl.lastIndexOf('/') + 1);
+        }
+        else {
+          var host = 'localhost:12580';
+          var matches = /\/\/([^\/]+?)\//.exec(this.$getConfig().bundleUrl);
+          if (matches && matches.length >= 2) {
+            host = matches[1];
+          }
+          nativeBase = 'http://' + host + '/' + this.dir + '/build/';
+        }
+        var h5Base = './' + this.dir + '/build/';
+        // in Native
+        var base = nativeBase;
+        if (typeof window === 'object') {
+          // in Browser or WebView
+          base = h5Base;
+        }
+
+        for(var i = 0; i < this.tabItems.length; i++) {
+            var tabItem = this.tabItems[i];
+            tabItem.src = base + tabItem.src;
+        }
+        // see log in Android Logcat
+        //if (this.items.length) console.log('hit', this.items[0].url);
+    },
+    methods: {
+      ready: function (e) {
+        var vm = this;
+        vm.$on('tabBar.onClick',function(e){
+          var detail= e.detail;
+          nativeLog('tabBar.onClick ' + detail.index);
+          console.log(e);
+        });
+      },
+    }
+  }
+</script>
