@@ -1,0 +1,54 @@
+<template>
+	<div style="background-color:green; flex-direction:row;">
+		<div>
+			<image src="{{image1}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
+			<text class='text' style="width:{{widthHeight}}">{{title1 }}</text>
+		</div>
+
+		<div>
+			<image src="{{image2}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
+			<text class='text' style="width:{{widthHeight}}">{{title2 }}</text>
+		</div>
+
+		<div>
+			<image src="{{image3}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
+			<text class='text' style="width:{{widthHeight}}">{{title3 }}</text>
+
+			<img src="{{image1}}" style="height:{{widthHeight}}; width: {{widthHeight}};">
+		</div>
+
+		
+	</div>
+</template>
+
+<style>
+
+	.imageClass{
+		background-color:#ccc;
+		margin-left: 10;
+	},
+	.text{
+		lines: 0;
+	}
+
+</style>
+
+<script>
+	module.exports = {
+		data:{
+			image1: "http://pic.toomao.com/6702cc94ab6a975db74fc5e5a9138e53cb8fb8b3",
+			title1: " The Third image1 Component,i do not say anymore",
+
+			image2: "http://pic.toomao.com/6702cc94ab6a975db74fc5e5a9138e53cb8fb8b3",
+			title2: " The Third image2 Component",
+
+			image3: "http://pic.toomao.com/6702cc94ab6a975db74fc5e5a9138e53cb8fb8b3",
+			title3: " The Third image3 Component, .........",
+			widthHeight: 30,
+		},
+		created: function () {
+			var deviceWidth = this.$getConfig().env.deviceWidth;
+			this.widthHeight = (deviceWidth - 40)  / 3.0;
+		}
+	}
+</script>

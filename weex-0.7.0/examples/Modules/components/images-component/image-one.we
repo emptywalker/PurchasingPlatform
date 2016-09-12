@@ -7,9 +7,10 @@
 
 <style>
 	.imageClass{
-		/*width: 750;*/
-		/*height: 350;*/
 		background-color:#ccc;
+		margin-left: 10;
+		/*padding-left: 10;*/
+		/*padding-right: 50;*/
 	}
 </style>
 
@@ -18,16 +19,11 @@
 		data:{
 			image: "http://pic.toomao.com/6702cc94ab6a975db74fc5e5a9138e53cb8fb8b3",
 			title: " The First Define Component",
-			widthHeight: 20,
+			widthHeight: 30,
 		},
 		created: function () {
-			var config = this.$getConfig();
-			console.log(config);
-			var configJSON = JSON.stringify(config, null, 2);
-			// var env = JSON.stringify(config.env);
-			console.log(configJSON.env.deviceWidth + '-----'+configJSON);
-
-			widthHeight = configJSON.env.deviceWidth / 2.0;
+			var deviceWidth = this.$getConfig().env.deviceWidth;
+			this.widthHeight = deviceWidth - 20;
 		}
 	}
 </script>

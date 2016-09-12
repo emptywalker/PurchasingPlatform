@@ -5,6 +5,10 @@
 		<text class='textq'>这是我 dasdas     的首页</text>
 
 		<image-one></image-one>
+		<hr></hr>
+		<image-two></image-two>
+		<hr></hr>
+		<image-three></image-three>
 	</div>
 </template>
 
@@ -21,15 +25,21 @@
 </style>
 <script>
 	require("../components/images-component/image-one.we");
+	require("../components/images-component/image-two.we");
+	require("../components/images-component/image-three.we");
 	module.exports = {
-
-
 		//相当于ready
 		created: function () {
 			// body...
 			var util = require("../../util.js");
-			// console.log( "-------------"+util.serverPath());
+			console.log( "-------------"+util.serverPath());
 			console.log('this is created fun execute time' + util);
+		},
+
+		mathods:{
+			_getData: function () {
+				
+			}
 		}
 	}
 </script>

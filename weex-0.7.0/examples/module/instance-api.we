@@ -17,6 +17,8 @@
       var config = this.$getConfig();
       console.log('config', JSON.stringify(config));
       this.config = JSON.stringify(config, null, 2);
+      console.log(this.config.env);
+      console.log(this.$getConfig().env.deviceWidth);
     },
     methods: {}
   }
