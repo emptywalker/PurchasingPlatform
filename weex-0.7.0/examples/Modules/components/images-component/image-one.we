@@ -1,29 +1,48 @@
 <template>
-	<div style="background-color:green">
-		<image src="{{image}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
-		<text>{{title }}{{$getConfig().env.deviceWidth}}</text>
+	<div style="background-color:green; flex-direction:row;">
+		<div repeat="{{list}}">
+			<div>
+				<image src="{{image}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
+				<text>{{name}}{{$getConfig().env.deviceWidth}}</text>
+			</div>
+		</div>
 	</div>
+	
 </template>
 
 <style>
 	.imageClass{
 		background-color:#ccc;
 		margin-left: 10;
-		/*padding-left: 10;*/
-		/*padding-right: 50;*/
 	}
 </style>
 
 <script>
 	module.exports = {
 		data:{
-			image: "http://pic.toomao.com/6702cc94ab6a975db74fc5e5a9138e53cb8fb8b3",
-			title: " The First Define Component",
 			widthHeight: 30,
+			list: [
+				{
+					id:"57c54a8934439b5e8a4475f1",
+					image:"http://pic.toomao.com/1b601861d3d5089b10c7acc399288a2191b34eff",
+					name:"5555555555555",
+					original:0,
+					price:554
+				},
+				{
+					id:"57c54a8934439b5e8a4475f1",
+					image:"http://pic.toomao.com/1b601861d3d5089b10c7acc399288a2191b34eff",
+					name:"5555555555555",
+					original:0,
+					price:554
+				}
+			]
 		},
 		created: function () {
 			var deviceWidth = this.$getConfig().env.deviceWidth;
-			this.widthHeight = deviceWidth - 20;
+			var length = this.list.length;
+			this.widthHeight = (deviceWidth - 10 * (length + 1)) / length;
+			console.log(length + '~~~~~~~~~~~~~~' + this.widthHeight);
 		}
 	}
 </script>

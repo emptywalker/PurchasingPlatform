@@ -1,14 +1,15 @@
 <template>
-	<div style="background-color:red">
+	<div style="background-color:red" id="content">
 		<input type="text" value="我是首页的输入框" placeholder="等待你的输入...." style="width: 500; height:50; ">
 		<hr></hr>
 		<text class='textq'>这是我 dasdas     的首页</text>
+		<div id="body"></div>
 
-		<image-one></image-one>
-		<hr></hr>
-		<image-two></image-two>
-		<hr></hr>
-		<image-three></image-three>
+		<!-- <image-one></image-one> -->
+		<!-- <hr></hr> -->
+		<!-- <image-two></image-two> -->
+		<!-- <hr></hr> -->
+		<!-- <image-three></image-three> -->
 	</div>
 </template>
 
@@ -21,6 +22,7 @@
 		text-align: center;
 		/*line-height: 500;*/
 		background-color: #00f;
+		baseURL:'';
 	}
 </style>
 <script>
@@ -32,12 +34,61 @@
 		created: function () {
 			// body...
 			var util = require("../../util.js");
-			console.log( "-------------"+util.serverPath());
-			console.log('this is created fun execute time' + util);
+			this.baseURL = util.serverPath();
+			this._getData();
+			// console.log( "-------------"+util.serverPath());
+			// console.log('this is created fun execute time' + util);
 		},
 
-		mathods:{
+		methods:{
 			_getData: function () {
+				var that = this;
+				var stream = require("@weex-module/stream");
+				
+
+				var url = this.baseURL + '/ols/1.1/stores/biz';
+				stream.fetch({
+					method: 'GET',
+					url: url,
+					type: 'json'
+				}, function successed(response) {
+					// body...
+					if (response.status == 200) {
+						var dom = require('@weex-module/dom');
+						//这里需要兼容web和Native，Native需要将传递的数据JSON化
+						var data = response.data;
+						try{
+							data = JSON.parse(response.data);
+						}catch(e){};
+
+						var homePage;
+						try{
+							homePage = JSON.parse(data.homePageJson);
+						}catch(e){};
+						for (var i = 0; i < homePage.length; i++) {
+							var page = homePage[i];
+							if (page.name == 'goods-layout') {
+								var results = page.data.results;
+								//找寻父节点
+								var parentNode = that.$el("body")
+				
+								console.log(page.data.results[0].name + '++++++++++' + parentNode);
+							}
+						}
+
+						 
+						console.log(response.data);
+						console.log(data);
+						console.log(homePage);
+						console.log(homePage[0]);
+
+					}else{
+						//TODO  错误处理
+						console.log('请求出错', response);
+					}
+				}, function failed(err) {
+					// body...
+				});
 				
 			}
 		}
