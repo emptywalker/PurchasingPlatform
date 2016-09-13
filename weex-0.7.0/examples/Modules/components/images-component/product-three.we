@@ -1,4 +1,5 @@
 <template>
+
 	<div style="background-color:green; flex-direction:row;">
 		<div>
 			<image src="{{image1}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
@@ -13,12 +14,9 @@
 		<div>
 			<image src="{{image3}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
 			<text class='text' style="width:{{widthHeight}}">{{title3 }}</text>
-
-			<img src="{{image1}}" style="height:{{widthHeight}}; width: {{widthHeight}};">
 		</div>
-
-		
 	</div>
+
 </template>
 
 <style>

@@ -1,16 +1,15 @@
 <template>
-	<div style="background-color:red" id="content">
-		<input type="text" value="我是首页的输入框" placeholder="等待你的输入...." style="width: 500; height:50; ">
+	<scroller style="background-color:red" id="content">
+		<input type="text" value="我是首页的输入框" placeholder="等待你的输入...." style="width: {{deviceWidth}}}; height:50; ">
 		<hr></hr>
-		<text class='textq'>这是我 dasdas     的首页</text>
-		<div id="body"></div>
+		<text class='textq'>这是我的首页</text>
 
-		<!-- <image-one></image-one> -->
-		<!-- <hr></hr> -->
-		<!-- <image-two></image-two> -->
-		<!-- <hr></hr> -->
-		<!-- <image-three></image-three> -->
-	</div>
+		<div id="body" repeat="{{homeList}}">
+			<product-one list="{{data.results}}" if="{{name==='goods-layout' && data.mode === 'col-1'}}"></product-one>
+			<product-two list="{{data.results}}" if="{{name==='goods-layout' && data.mode === 'col-2'}}"></product-two>
+			<product-three list="{{data.results}}" if="{{name==='goods-layout' && data.mode === 'col-3'}}"></product-three>
+		</div>
+	</scroller>
 </template>
 
 <style>
@@ -28,25 +27,29 @@
 <script>
 	require("../components/images-component/image-one.we");
 	require("../components/images-component/image-two.we");
-	require("../components/images-component/image-three.we");
+	require("../components/images-component/product-one.we");
+	require("../components/images-component/product-two.we");
+	require("../components/images-component/product-three.we");
 	module.exports = {
+		data: {
+			deviceWidth: 640,
+			homeList:[]
+		},
 		//相当于ready
 		created: function () {
 			// body...
 			var util = require("../../util.js");
 			this.baseURL = util.serverPath();
+			this.deviceWidth = this.$getConfig().env.deviceWidth;
 			this._getData();
-			// console.log( "-------------"+util.serverPath());
-			// console.log('this is created fun execute time' + util);
 		},
 
 		methods:{
 			_getData: function () {
 				var that = this;
 				var stream = require("@weex-module/stream");
-				
-
 				var url = this.baseURL + '/ols/1.1/stores/biz';
+
 				stream.fetch({
 					method: 'GET',
 					url: url,
@@ -60,27 +63,20 @@
 						try{
 							data = JSON.parse(response.data);
 						}catch(e){};
-
 						var homePage;
 						try{
 							homePage = JSON.parse(data.homePageJson);
 						}catch(e){};
-						for (var i = 0; i < homePage.length; i++) {
-							var page = homePage[i];
-							if (page.name == 'goods-layout') {
-								var results = page.data.results;
-								//找寻父节点
-								var parentNode = that.$el("body")
-				
-								console.log(page.data.results[0].name + '++++++++++' + parentNode);
-							}
-						}
 
-						 
-						console.log(response.data);
-						console.log(data);
-						console.log(homePage);
-						console.log(homePage[0]);
+						that.homeList = homePage;
+
+						// for (var i = 0; i < homePage.length; i++) {
+						// 	var page = homePage[i];
+						// 	console.log(page.name,  page.data);
+						// 	if (page.name == 'goods-layout') {
+						// 		var results = page.data.results;
+						// 	}
+						// }
 
 					}else{
 						//TODO  错误处理

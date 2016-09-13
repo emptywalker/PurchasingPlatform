@@ -1,0 +1,43 @@
+<template>
+	<div style="flex-direction:row;">
+		<div repeat="{{list}}">
+			<div class="content">
+				<image src="{{image}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
+				<text class='text' style="width:{{widthHeight}}">{{name}} ￥{{price}}</text>
+			</div>
+		</div>
+	</div>
+	
+</template>
+
+<style>
+	.imageClass{
+		background-color:#ccc;
+		margin-left: 10;
+	}
+
+	.text{
+		lines:0;
+	}
+
+	.content{
+		margin-top: 20
+	}
+</style>
+
+<script>
+	module.exports = {
+		data:{
+			widthHeight: 30,
+			list: []
+		},
+		created: function () {
+			var deviceWidth = this.$getConfig().env.deviceWidth;
+			this.widthHeight = deviceWidth;
+
+			// var length = this.list.length;
+			// this.widthHeight = (deviceWidth - 10 * (length + 1)) / length;
+			console.log(length + '~~~~~~~~~~~~~~' + this.widthHeight);
+		}
+	}
+</script>

@@ -1,0 +1,76 @@
+<template>
+	<div style="">
+		<div  class="content" style="flex-direction:row; width:{{dWidth}}">
+			<div repeat="{{list}}">
+				<div>
+					<image src="{{list[$index].image}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
+					<text class='text' style="width:{{widthHeight}}">{{name}}+{{$index}} ￥{{price}} </text>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</template>
+
+<style>
+	.imageClass{
+		background-color:#ccc;
+		margin-left: 10;
+		/*padding-left: 10;*/
+		/*padding-right: 50;*/
+	},
+	.text{
+		lines: 0;
+	}
+</style>
+
+<script>
+	module.exports = {
+		data:{
+			image1: "http://pic.toomao.com/6702cc94ab6a975db74fc5e5a9138e53cb8fb8b3",
+			title1: " The Second image1 Component,i do not say anymore",
+			image2: "http://pic.toomao.com/6702cc94ab6a975db74fc5e5a9138e53cb8fb8b3",
+			title2: " The Second image2 Component",
+			widthHeight: 30,
+			dWidth: 100,
+			list: []
+		},
+
+		created: function () {
+
+			var subArray = [];
+			var index = 0;//记录取值索引
+			for (var i = 0; i < this.list.length; i++) {				
+				if (i % 2 == 1) {
+					var array = this.list.slice(index, index + 2);
+					console.log(array.length + '++++++++-----------' + index);
+					if (array.length == 2) {
+						console.log(i ,index, array )
+						console.log('-----------')
+						subArray.push(array);
+						index += 2;
+					}
+				}
+			}
+
+			var length = this.list.length;
+			if (length % 2 == 1) {
+				var obj = this.list[length - 1];
+				var lastArray = new Array(obj);
+				console.log(lastArray+'==========');
+				subArray.push(lastArray);
+			}
+			// this.list = subArray;
+
+			// console.log(length+'~~~~~~~~~~~' + subArray);
+
+			var deviceWidth = this.$getConfig().env.deviceWidth;
+			this.dWidth = deviceWidth;
+			this.widthHeight = (deviceWidth - 30)  / 2.0;
+
+
+
+			// console.log(this.list.length+'~~~~~~~~~~~~~~~');
+		}
+	}
+</script>
