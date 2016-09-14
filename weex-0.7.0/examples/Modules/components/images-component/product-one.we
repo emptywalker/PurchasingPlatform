@@ -37,7 +37,7 @@
 
 			// var length = this.list.length;
 			// this.widthHeight = (deviceWidth - 10 * (length + 1)) / length;
-			console.log(length + '~~~~~~~~~~~~~~' + this.widthHeight);
+			// console.log(length + '~~~~~~~~~~~~~~' + this.widthHeight);
 		}
 	}
 </script>

@@ -1,0 +1,34 @@
+
+<template>
+	<div>
+		<a href="{{textdata.link}}" style="width:{{width}};">
+			<text class="text" style="width:{{width}};"> {{textdata.text}} </text>
+		</a>
+	</div>
+</template>
+
+<style>
+	.text{
+		margin-left: 20;
+		/*line-height: 63;*/
+		text-align: center;
+	}
+</style>
+
+<script>
+	module.exports = {
+		data:{
+			width: 20,
+			height: 20,
+			textdata:{
+				text: '',
+				link: ''
+			}
+		},
+		created: function () {
+			var deviceWidth = this.$getConfig().env.deviceWidth;
+			this.width = deviceWidth - 40;
+			console.log(this.textdata.text)
+		}
+	}
+</script>

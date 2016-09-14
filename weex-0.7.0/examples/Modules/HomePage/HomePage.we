@@ -5,14 +5,20 @@
 		<text class='textq'>这是我的首页</text>
 
 		<div id="body" repeat="{{homeList}}">
+
+			<!-- 滑动组件 -->
+			<image-slider if="{{name ==='slider'}}" imageList="{{data.images}}" list="{{data.images}}"></image-slider>
 			<!-- 商品组件 -->
-			<product-one list="{{data.results}}" if="{{name==='goods-layout' && data.mode === 'col-1'}}"></product-one>
-			<product-two list="{{data.results}}" if="{{name==='goods-layout' && data.mode === 'col-2'}}"></product-two>
-			<product-three list="{{data.results}}" if="{{name==='goods-layout' && data.mode === 'col-3'}}"></product-three>
+			<product-one if="{{name === 'goods-layout' && data.mode === 'col-1'}}" list="{{data.results}}" ></product-one>
+			<product-two if="{{name === 'goods-layout' && data.mode === 'col-2'}}" list="{{data.results}}"></product-two>
+			<product-three if="{{name ==='goods-layout' && data.mode === 'col-3'}}" list="{{data.results}}"></product-three>
 			<!-- 图片组件 -->
-			<image-one if="{{name==='link-image'}}" imagedata="{{data}}"></image-one>
-			<image-two if="{{name==='link-image-two'}}" imagedata="{{data.images}}"></image-one>
+			<image-one if="{{name === 'link-image'}}" imagedata="{{data}}"></image-one>
+			<image-two if="{{name === 'link-image-two'}}" imagedata="{{data.images}}"></image-two>
 			<!-- 文本组件 -->
+			<text-p if="{{name === 'link-p'}}" textdata="{{data}}"></text-p>
+			<text-title if="{{name === 'link-title'}}" textdata="{{data}}"></text-title>
+			
 		</div>
 	</scroller>
 </template>
@@ -35,6 +41,9 @@
 	require("../components/images-component/product-three.we");
 	require("../components/images-component/image-one.we");
 	require("../components/images-component/image-two.we");
+	require("../components/images-component/image-slider.we");
+	require("../components/text-component/text-title.we");
+	require("../components/text-component/text-p.we");
 	module.exports = {
 		data: {
 			deviceWidth: 640,
@@ -65,23 +74,21 @@
 						var dom = require('@weex-module/dom');
 						//这里需要兼容web和Native，Native需要将传递的数据JSON化
 						var data = response.data;
+						var homePage;
+
 						try{
 							data = JSON.parse(response.data);
 						}catch(e){};
-						var homePage;
 						try{
 							homePage = JSON.parse(data.homePageJson);
 						}catch(e){};
 
 						that.homeList = homePage;
 
-						// for (var i = 0; i < homePage.length; i++) {
-						// 	var page = homePage[i];
-						// 	console.log(page.name,  page.data);
-						// 	if (page.name == 'goods-layout') {
-						// 		var results = page.data.results;
-						// 	}
-						// }
+						for (var i = 0; i < homePage.length; i++) {
+							var page = homePage[i];
+							console.log(page.name,  page.data);
+						}
 
 					}else{
 						//TODO  错误处理

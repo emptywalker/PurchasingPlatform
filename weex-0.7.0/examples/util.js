@@ -3,7 +3,7 @@
 var apiBase = 'https://dev-api.toomao.com';
 //初次对JS中的exports关键字的使用
 exports.serverPath = function() {
-	console.log(apiBase);
+	// console.log(apiBase);
 	return apiBase;
 }
 

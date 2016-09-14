@@ -1,0 +1,43 @@
+<template>
+	<div> 
+		<slider auto-play="true" style="width:{{width}}; height:{{width * 0.6}}" class='slider'>
+			<image src="{{image}}" style="width:{{width}}; height:{{width * 0.6}}; background-color:#00f" repeat="{{list}}" class="image"></image>
+			<indicator class="indicator" style="width:{{width}}"></indicator>
+		</slider>
+	</div>
+</template>
+
+<style>
+	.slider{
+		background-color: #bbb;
+		position: relative;
+	}
+	.image{
+		background-color: #888;
+	}
+	.indicator{
+		position: absolute;
+		bottom: 15;
+		/*width: 300;*/
+		height: 15;
+		item-color: white;
+		item-selectedColor:#000;
+	}
+</style>
+
+<script>
+	module.exports = {
+		data:{
+			width: 20,
+			height: 20,
+            list: []
+		},
+		created:function () {
+			// body...
+			var deviceWidth = this.$getConfig().env.deviceWidth;
+			this.width = deviceWidth;
+		}
+	}
+</script>
+
+<!--  -->
