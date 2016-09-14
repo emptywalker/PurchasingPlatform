@@ -1,52 +1,81 @@
 <template>
-
-	<div style="background-color:green; flex-direction:row;">
-		<div>
-			<image src="{{image1}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
-			<text class='text' style="width:{{widthHeight}}">{{title1 }}</text>
-		</div>
-
-		<div>
-			<image src="{{image2}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
-			<text class='text' style="width:{{widthHeight}}">{{title2 }}</text>
-		</div>
-
-		<div>
-			<image src="{{image3}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
-			<text class='text' style="width:{{widthHeight}}">{{title3 }}</text>
+	<div class="wrap">
+		<div repeat="{{rowColList}}">
+			<div  class="content" style="flex-direction:row; width:{{dWidth}}">
+				<div>
+					<image src="{{list[2 * $index].image}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
+					<text class='text' style="width:{{widthHeight}}">{{list[2 * $index].name}}  ￥{{list[2 * $index].price}}</text>
+				</div>
+				<div if='{{list[2 * $index + 1]}}'>
+					<image src="{{list[2 * $index + 1].image}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
+					<text class='text' style="width:{{widthHeight}}">{{list[2 * $index + 1].name}}  ￥{{list[2 * $index + 1].price}} </text>
+				</div>
+				<div if='{{list[2 * $index + 2]}}'>
+					<image src="{{list[2 * $index + 2].image}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
+					<text class='text' style="width:{{widthHeight}}">{{list[2 * $index + 2].name}}  ￥{{list[2 * $index + 2].price}} </text>
+				</div>
+			</div>
+			
 		</div>
 	</div>
-
 </template>
 
 <style>
-
+	.wrap{
+		margin-top: 10
+	}
 	.imageClass{
 		background-color:#ccc;
 		margin-left: 10;
-	},
+		/*padding-left: 10;*/
+		/*padding-right: 50;*/
+	}
 	.text{
 		lines: 0;
 	}
-
 </style>
 
 <script>
 	module.exports = {
 		data:{
-			image1: "http://pic.toomao.com/6702cc94ab6a975db74fc5e5a9138e53cb8fb8b3",
-			title1: " The Third image1 Component,i do not say anymore",
-
-			image2: "http://pic.toomao.com/6702cc94ab6a975db74fc5e5a9138e53cb8fb8b3",
-			title2: " The Third image2 Component",
-
-			image3: "http://pic.toomao.com/6702cc94ab6a975db74fc5e5a9138e53cb8fb8b3",
-			title3: " The Third image3 Component, .........",
 			widthHeight: 30,
+			dWidth: 100,
+			list: [],
+			rowColList: []
 		},
+
 		created: function () {
+			//将原数据 分成小数据
+			var subArray = [];
+			var index = 0;//记录取值索引
+			for (var i = 0; i < this.list.length; i++) {				
+				if (i % 2 == 1) {
+					var array = this.list.slice(index, index + 2);
+					if (array.length == 2) {
+						subArray.push(array);
+						index += 2;
+					}
+				}
+			}
+			var length = this.list.length;
+			if (length % 2 == 1) {
+				var obj = this.list[length - 1];
+				var lastArray = new Array(obj);
+				subArray.push(lastArray);
+			}
+			// this.rowColList = subArray;
+
+			//repeat 分化后的数据
+			var listLength = this.list.length;
+			var rowCol = Math.ceil(listLength/3);
+			for (var i = 0; i < rowCol; i++) {
+				this.rowColList.push(i);
+			}
+			//设置宽度
 			var deviceWidth = this.$getConfig().env.deviceWidth;
+			this.dWidth = deviceWidth;
 			this.widthHeight = (deviceWidth - 40)  / 3.0;
+
 		}
 	}
 </script>

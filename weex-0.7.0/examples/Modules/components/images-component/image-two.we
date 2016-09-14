@@ -1,0 +1,29 @@
+<template>
+	<div style="flex-direction:row" class="wrap">
+		<div repeat="{{imagedata}}">
+			<img  class="img" style="width:{{widthHeight}}; height:{{widthHeight * 0.8}}" class="image" src="{{image}}" id="{{link}}">
+		</div>
+	</div>
+</template>
+
+<style>
+	.wrap{
+		margin-top: 10
+	}
+	.img{
+		margin-left: 10
+	}
+</style>
+	
+<script>
+	module.exports = {
+		data:{
+			widthHeight: 30,
+			imagedata:[],
+		},
+		created: function () {
+			var width = this.$getConfig().env.deviceWidth;
+			this.widthHeight = (width - 30) / 2.0;
+		}
+	}
+</script>

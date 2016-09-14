@@ -1,14 +1,14 @@
 <template>
-	<div style="">
-		<div repeat="{{[1, 2, 3]}}">
+	<div class="wrap">
+		<div repeat="{{rowColList}}">
 			<div  class="content" style="flex-direction:row; width:{{dWidth}}">
 				<div>
 					<image src="{{list[2 * $index].image}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
-					<text class='text' style="width:{{widthHeight}}">{{name}}+{{$index}} ￥{{price}} </text>
+					<text class='text' style="width:{{widthHeight}}">{{list[2 * $index].name}}  ￥{{list[2 * $index].price}}</text>
 				</div>
 				<div if='{{list[2 * $index + 1]}}'>
 					<image src="{{list[2 * $index + 1].image}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
-					<text class='text' style="width:{{widthHeight}}">{{name}}+{{$index}} ￥{{price}} </text>
+					<text class='text' style="width:{{widthHeight}}">{{list[2 * $index + 1].name}}  ￥{{list[2 * $index + 1].price}} </text>
 				</div>
 			</div>
 			
@@ -17,6 +17,10 @@
 </template>
 
 <style>
+	.wrap{
+		margin-top: 10
+	}
+	
 	.imageClass{
 		background-color:#ccc;
 		margin-left: 10;
@@ -31,50 +35,44 @@
 <script>
 	module.exports = {
 		data:{
-			image1: "http://pic.toomao.com/6702cc94ab6a975db74fc5e5a9138e53cb8fb8b3",
-			title1: " The Second image1 Component,i do not say anymore",
-			image2: "http://pic.toomao.com/6702cc94ab6a975db74fc5e5a9138e53cb8fb8b3",
-			title2: " The Second image2 Component",
 			widthHeight: 30,
 			dWidth: 100,
-			list: []
+			list: [],
+			rowColList: []
 		},
 
 		created: function () {
-
+			//将原数据 分成小数据
 			var subArray = [];
 			var index = 0;//记录取值索引
 			for (var i = 0; i < this.list.length; i++) {				
 				if (i % 2 == 1) {
 					var array = this.list.slice(index, index + 2);
-					console.log(array.length + '++++++++-----------' + index);
 					if (array.length == 2) {
-						console.log(i ,index, array )
-						console.log('-----------')
 						subArray.push(array);
 						index += 2;
 					}
 				}
 			}
-
 			var length = this.list.length;
 			if (length % 2 == 1) {
 				var obj = this.list[length - 1];
 				var lastArray = new Array(obj);
-				console.log(lastArray+'==========');
 				subArray.push(lastArray);
 			}
-			// this.list = subArray;
+			// this.rowColList = subArray;
 
-			// console.log(length+'~~~~~~~~~~~' + subArray);
-
+			//repeat 分化后的数据
+			var listLength = this.list.length;
+			var rowCol = Math.ceil(listLength/2);
+			for (var i = 0; i < rowCol; i++) {
+				this.rowColList.push(i);
+			}
+			//设置宽度
 			var deviceWidth = this.$getConfig().env.deviceWidth;
 			this.dWidth = deviceWidth;
 			this.widthHeight = (deviceWidth - 30)  / 2.0;
 
-
-
-			// console.log(this.list.length+'~~~~~~~~~~~~~~~');
 		}
 	}
 </script>

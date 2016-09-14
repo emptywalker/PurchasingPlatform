@@ -5,9 +5,14 @@
 		<text class='textq'>这是我的首页</text>
 
 		<div id="body" repeat="{{homeList}}">
+			<!-- 商品组件 -->
 			<product-one list="{{data.results}}" if="{{name==='goods-layout' && data.mode === 'col-1'}}"></product-one>
 			<product-two list="{{data.results}}" if="{{name==='goods-layout' && data.mode === 'col-2'}}"></product-two>
 			<product-three list="{{data.results}}" if="{{name==='goods-layout' && data.mode === 'col-3'}}"></product-three>
+			<!-- 图片组件 -->
+			<image-one if="{{name==='link-image'}}" imagedata="{{data}}"></image-one>
+			<image-two if="{{name==='link-image-two'}}" imagedata="{{data.images}}"></image-one>
+			<!-- 文本组件 -->
 		</div>
 	</scroller>
 </template>
@@ -25,11 +30,11 @@
 	}
 </style>
 <script>
-	require("../components/images-component/image-one.we");
-	require("../components/images-component/image-two.we");
 	require("../components/images-component/product-one.we");
 	require("../components/images-component/product-two.we");
 	require("../components/images-component/product-three.we");
+	require("../components/images-component/image-one.we");
+	require("../components/images-component/image-two.we");
 	module.exports = {
 		data: {
 			deviceWidth: 640,

@@ -1,0 +1,27 @@
+<template>
+	<div class="wrap">
+		<img  style="width:{{widthHeight}}; height:{{widthHeight * 0.8}}" class="image" src="{{imagedata.image}}" id="{{imagedata.link}}">
+	</div>
+</template>
+
+<style>
+	.wrap{
+		margin-top: 10
+	}
+</style>
+
+<script>
+	module.exports = {
+		data:{
+			widthHeight: 30,
+			imagedata:{
+				image:'',
+				link:''
+			}
+		},
+		created: function () {
+			var width = this.$getConfig().env.deviceWidth;
+			this.widthHeight = width;
+		}
+	}
+</script>

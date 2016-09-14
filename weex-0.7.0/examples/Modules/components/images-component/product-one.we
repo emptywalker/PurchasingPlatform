@@ -1,7 +1,7 @@
 <template>
-	<div style="flex-direction:row;">
+	<div style="flex-direction:row;" class="wrap">
 		<div repeat="{{list}}">
-			<div class="content">
+			<div>
 				<image src="{{image}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
 				<text class='text' style="width:{{widthHeight}}">{{name}} ￥{{price}}</text>
 			</div>
@@ -11,6 +11,10 @@
 </template>
 
 <style>
+	.wrap{
+		margin-top: 10
+	}
+	
 	.imageClass{
 		background-color:#ccc;
 		margin-left: 10;
@@ -18,10 +22,6 @@
 
 	.text{
 		lines:0;
-	}
-
-	.content{
-		margin-top: 20
 	}
 </style>
 
@@ -33,7 +33,7 @@
 		},
 		created: function () {
 			var deviceWidth = this.$getConfig().env.deviceWidth;
-			this.widthHeight = deviceWidth;
+			this.widthHeight = deviceWidth - 20;
 
 			// var length = this.list.length;
 			// this.widthHeight = (deviceWidth - 10 * (length + 1)) / length;
