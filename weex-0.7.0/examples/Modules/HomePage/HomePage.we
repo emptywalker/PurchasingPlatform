@@ -1,11 +1,12 @@
 <template>
 	<scroller style="background-color:red" id="content">
 		<input type="text" value="我是首页的输入框" placeholder="等待你的输入...." style="width: {{deviceWidth}}}; height:50; ">
-		<hr></hr>
-		<text class='textq'>这是我的首页</text>
+		<!-- <hr></hr> -->
+		<!-- <text class='textq'>这是我的首页</text> -->
+		<!-- <text class='textq'>这是没有网络请求的效果</text> -->
 
 		<div id="body" repeat="{{homeList}}">
-
+			<!-- <text>{{name}}这不是component</text> -->
 			<!-- 滑动组件 -->
 			<image-slider if="{{name ==='slider'}}" imageList="{{data.images}}" list="{{data.images}}"></image-slider>
 			<!-- 商品组件 -->

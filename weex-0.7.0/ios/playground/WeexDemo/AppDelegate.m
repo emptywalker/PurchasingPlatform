@@ -18,6 +18,7 @@
 #import <WeexSDK/WeexSDK.h>
 #import <AVFoundation/AVFoundation.h>
 #import <ATSDK/ATManager.h>
+#import "WXDevTool.h"
 
 @interface AppDelegate ()
 @end
@@ -83,6 +84,8 @@
     
     [WXSDKEngine registerComponent:@"select" withClass:NSClassFromString(@"WXSelectComponent")];
     [WXSDKEngine registerModule:@"event" withClass:[WXEventModule class]];
+    [WXDevTool setDebug:YES];
+    [WXDevTool launchDevToolDebugWithUrl:@"ws://172.16.144.32:8088/debugProxy/native"];
     
 #if !(TARGET_IPHONE_SIMULATOR)
     [self checkUpdate];

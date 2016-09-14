@@ -1,18 +1,18 @@
 <template>
 	<div class="wrap">
-		<div repeat="{{rowColList}}">
+		<div repeat="{{(k, v) in rowColList}}">
 			<div  class="content" style="flex-direction:row; width:{{dWidth}}">
 				<div>
-					<image src="{{list[2 * $index].image}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
-					<text class='text' style="width:{{widthHeight}}">{{list[2 * $index].name}}  ￥{{list[2 * $index].price}}</text>
+					<image src="{{list[3 * k].image}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
+					<text class='text' style="width:{{widthHeight}}">{{list[3 * k].name}}  ￥{{list[3 * k].price}}</text>
 				</div>
-				<div if='{{list[2 * $index + 1]}}'>
-					<image src="{{list[2 * $index + 1].image}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
-					<text class='text' style="width:{{widthHeight}}">{{list[2 * $index + 1].name}}  ￥{{list[2 * $index + 1].price}} </text>
+				<div if='{{list[3 * k + 1]}}'>
+					<image src="{{list[3 * k + 1].image}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
+					<text class='text' style="width:{{widthHeight}}">{{list[3 * k + 1].name}}  ￥{{list[3 * k + 1].price}} </text>
 				</div>
-				<div if='{{list[2 * $index + 2]}}'>
-					<image src="{{list[2 * $index + 2].image}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
-					<text class='text' style="width:{{widthHeight}}">{{list[2 * $index + 2].name}}  ￥{{list[2 * $index + 2].price}} </text>
+				<div if='{{list[3 * k + 2]}}'>
+					<image src="{{list[3 * k + 2].image}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
+					<text class='text' style="width:{{widthHeight}}">{{list[3 * k + 2].name}}  ￥{{list[3 * k + 2].price}} </text>
 				</div>
 			</div>
 			
@@ -46,23 +46,23 @@
 
 		created: function () {
 			//将原数据 分成小数据
-			var subArray = [];
-			var index = 0;//记录取值索引
-			for (var i = 0; i < this.list.length; i++) {				
-				if (i % 2 == 1) {
-					var array = this.list.slice(index, index + 2);
-					if (array.length == 2) {
-						subArray.push(array);
-						index += 2;
-					}
-				}
-			}
-			var length = this.list.length;
-			if (length % 2 == 1) {
-				var obj = this.list[length - 1];
-				var lastArray = new Array(obj);
-				subArray.push(lastArray);
-			}
+			// var subArray = [];
+			// var index = 0;//记录取值索引
+			// for (var i = 0; i < this.list.length; i++) {				
+			// 	if (i % 2 == 1) {
+			// 		var array = this.list.slice(index, index + 2);
+			// 		if (array.length == 2) {
+			// 			subArray.push(array);
+			// 			index += 2;
+			// 		}
+			// 	}
+			// }
+			// var length = this.list.length;
+			// if (length % 2 == 1) {
+			// 	var obj = this.list[length - 1];
+			// 	var lastArray = new Array(obj);
+			// 	subArray.push(lastArray);
+			// }
 			// this.rowColList = subArray;
 
 			//repeat 分化后的数据

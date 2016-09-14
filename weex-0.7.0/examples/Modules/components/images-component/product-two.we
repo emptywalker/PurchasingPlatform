@@ -1,14 +1,15 @@
 <template>
 	<div class="wrap">
-		<div repeat="{{rowColList}}">
+		<div repeat="{{(k, v) in rowColList}}">
 			<div  class="content" style="flex-direction:row; width:{{dWidth}}">
+			<!-- <text>{{k}}</text> -->
 				<div>
-					<image src="{{list[2 * $index].image}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
-					<text class='text' style="width:{{widthHeight}}">{{list[2 * $index].name}}  ￥{{list[2 * $index].price}}</text>
+					<image src="{{list[2 * k].image}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
+					<text class='text' style="width:{{widthHeight}}">{{list[2 * k].name}}  ￥{{list[2 * k].price}}</text>
 				</div>
-				<div if='{{list[2 * $index + 1]}}'>
-					<image src="{{list[2 * $index + 1].image}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
-					<text class='text' style="width:{{widthHeight}}">{{list[2 * $index + 1].name}}  ￥{{list[2 * $index + 1].price}} </text>
+				<div if='{{list[2 * k + 1]}}'>
+					<image src="{{list[2 * k + 1].image}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
+					<text class='text' style="width:{{widthHeight}}">{{list[2 * k + 1].name}}  ￥{{list[2 * k + 1].price}} </text>
 				</div>
 			</div>
 			
@@ -20,7 +21,7 @@
 	.wrap{
 		margin-top: 10
 	}
-	
+
 	.imageClass{
 		background-color:#ccc;
 		margin-left: 10;
