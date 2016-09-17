@@ -76,10 +76,11 @@
 
 						that.homeList = homePage;
 
-						for (var i = 0; i < homePage.length; i++) {
-							var page = homePage[i];
-							console.log(page.name,  page.data);
-						}
+						//打印数据
+						// for (var i = 0; i < homePage.length; i++) {
+						// 	var page = homePage[i];
+						// 	console.log(page.name,  page.data);
+						// }
 
 					}else{
 						//TODO  错误处理

@@ -3,13 +3,13 @@
 		<div repeat="{{(k, v) in rowColList}}">
 			<div  class="content" style="flex-direction:row; width:{{dWidth}}">
 			<!-- <text>{{k}}</text> -->
-				<div>
+				<div productid="{{list[2 * k].id}}" onclick="productClicked">
 					<image src="{{list[2 * k].image}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
 					<text class='textName' style="width:{{widthHeight}}">{{list[2 * k].name}} </text>
 					<text class='textPrice' style="width:{{widthHeight}}">￥{{list[2 * k].price.toFixed(fiedNum)}}</text>
 				</div>
 
-				<div if='{{list[2 * k + 1]}}'>
+				<div if='{{list[2 * k + 1]}}' productid="{{list[2 * k + 1].id}}" onclick="productClicked">
 					<image src="{{list[2 * k + 1].image}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
 					<text class='textName' style="width:{{widthHeight}}">{{list[2 * k + 1].name}}</text>
 					<text class='textPrice' style="width:{{widthHeight}}">￥{{list[2 * k + 1].price.toFixed(fiedNum)}}</text>
@@ -88,6 +88,17 @@
 			this.dWidth = deviceWidth;
 			this.widthHeight = (deviceWidth - 30)  / 2.0;
 
+		},
+		methods: {
+			productClicked: function (e) {
+				// body...
+				var object = e.target.attr;
+				var modal = require("@weex-module/modal");
+				modal.toast({
+					"message":object.productid,
+					"duration": 1,
+				});
+			}
 		}
 	}
 </script>

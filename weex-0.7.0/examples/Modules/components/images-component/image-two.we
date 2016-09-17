@@ -1,7 +1,7 @@
 <template>
 	<div style="flex-direction:row" class="wrap">
 		<div repeat="{{imagedata}}">
-			<img  class="img" style="width:{{widthHeight}}; height:{{widthHeight * 0.8}}" class="image" src="{{image}}" id="{{link}}">
+			<img  class="img" style="width:{{widthHeight}}; height:{{widthHeight * 0.8}}" class="image" src="{{image}}" id="{{link}}" onclick="imageClicked">
 		</div>
 	</div>
 </template>
@@ -24,6 +24,19 @@
 		created: function () {
 			var width = this.$getConfig().env.deviceWidth;
 			this.widthHeight = (width - 30) / 2.0;
+		},
+		methods:{
+			imageClicked: function (e) {
+				// body...
+				var obj = e.target.attr;
+				var modal = require("@weex-module/modal");
+
+				// console.log(e.target.attr);
+				modal.toast({
+					'message': obj.src,
+					'duration': 1
+				});
+			}
 		}
 	}
 </script>

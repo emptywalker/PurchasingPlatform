@@ -1,7 +1,7 @@
 <template>
 	<div style="flex-direction:row;" class="wrap">
 		<div repeat="{{list}}">
-			<div class="content" style = "height:{{widthHeight}}; width: {{widthHeight}}">
+			<div class="content" style = "height:{{widthHeight}}; width: {{widthHeight}}" productID="{{id}}" onclick="productClicked">
 				<image src="{{image}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
 				<div class="textWrap" style="flex-direction:row; justify-content:space-between; width:{{widthHeight}}; height:45;">
 					<text class='nameText' >{{name}}</text>
@@ -55,6 +55,18 @@
 		created: function () {
 			var deviceWidth = this.$getConfig().env.deviceWidth;
 			this.widthHeight = deviceWidth - 20;
+		}, 
+		methods: {
+			productClicked: function (e) {
+				var object = e.target.attr;
+				var modal = require("@weex-module/modal");
+				console.log(object);
+				modal.toast({
+					"message": object.productid,
+					"duration": 1,
+				});
+							
+			}
 		}
 	}
 </script>

@@ -1,6 +1,6 @@
 <template>
 	<div class="wrap">
-		<img  style="width:{{widthHeight}}; height:{{widthHeight * 0.8}}" class="image" src="{{imagedata.image}}" id="{{imagedata.link}}">
+		<img  style="width:{{widthHeight}}; height:{{widthHeight * 0.8}}" class="image" src="{{imagedata.image}}" id="{{imagedata.link}}" onclick="imageClicked">
 	</div>
 </template>
 
@@ -22,6 +22,13 @@
 		created: function () {
 			var width = this.$getConfig().env.deviceWidth;
 			this.widthHeight = width;
+		},
+		methods: {
+			imageClicked : function (e) {
+				// body...
+				var modal = require('@weex-module/modal');
+				modal.toast({'message': e.target.src, 'duration': 1});
+			}
 		}
 	}
 </script>
