@@ -1,12 +1,8 @@
 <template>
-	<scroller style="background-color:red" id="content">
-		<input type="text" value="我是首页的输入框" placeholder="等待你的输入...." style="width: {{deviceWidth}}}; height:50; ">
-		<!-- <hr></hr> -->
-		<!-- <text class='textq'>这是我的首页</text> -->
-		<!-- <text class='textq'>这是没有网络请求的效果</text> -->
-
+	<scroller style="background-color:white" id="content">
+		<input class="inputText" type="text" value="我是首页的输入框" placeholder="等待你的输入...." style="width: {{deviceWidth}}}; height:50; ">
+		
 		<div id="body" repeat="{{homeList}}">
-			<!-- <text>{{name}}这不是component</text> -->
 			<!-- 滑动组件 -->
 			<image-slider if="{{name ==='slider'}}" imageList="{{data.images}}" list="{{data.images}}"></image-slider>
 			<!-- 商品组件 -->
@@ -19,21 +15,14 @@
 			<!-- 文本组件 -->
 			<text-p if="{{name === 'link-p'}}" textdata="{{data}}"></text-p>
 			<text-title if="{{name === 'link-title'}}" textdata="{{data}}"></text-title>
-			
 		</div>
+		
 	</scroller>
 </template>
 
 <style>
-	.textq {
-		padding-top: 100;
-		padding-bottom: 100;
-		font-size: 50;
-		color: #0f0;
-		text-align: center;
-		/*line-height: 500;*/
+	.inputText{
 		background-color: #00f;
-		baseURL:'';
 	}
 </style>
 <script>
@@ -48,7 +37,8 @@
 	module.exports = {
 		data: {
 			deviceWidth: 640,
-			homeList:[]
+			homeList:[],
+			baseURL:''
 		},
 		//相当于ready
 		created: function () {

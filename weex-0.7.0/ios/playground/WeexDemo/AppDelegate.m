@@ -85,7 +85,7 @@
     [WXSDKEngine registerComponent:@"select" withClass:NSClassFromString(@"WXSelectComponent")];
     [WXSDKEngine registerModule:@"event" withClass:[WXEventModule class]];
     [WXDevTool setDebug:YES];
-    [WXDevTool launchDevToolDebugWithUrl:@"ws://172.16.144.32:8088/debugProxy/native"];
+//    [WXDevTool launchDevToolDebugWithUrl:@"ws://172.16.144.32:8088/debugProxy/native"];
     
 #if !(TARGET_IPHONE_SIMULATOR)
     [self checkUpdate];

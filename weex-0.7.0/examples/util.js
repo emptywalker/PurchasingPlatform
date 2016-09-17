@@ -7,3 +7,11 @@ exports.serverPath = function() {
 	return apiBase;
 }
 
+//所有价格的保留位数
+var toFixedNum = 2;
+exports.fixedNum = function () {
+	// body...
+	return toFixedNum;
+}
+
+

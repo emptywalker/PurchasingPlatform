@@ -8,9 +8,14 @@
 
 <style>
 	.text{
+		margin-top: 20;
 		margin-left: 20;
-		line-height: 63;
+		height: 63;
 		text-align: center;
+		color: #1a1a1a;
+		font-size: 32;
+		/*background-color: red;*/
+		padding-top: 15;
 	}
 </style>
 

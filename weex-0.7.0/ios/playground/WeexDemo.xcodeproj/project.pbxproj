@@ -364,8 +364,8 @@
 				TargetAttributes = {
 					775BEE7A1C1E8ECC008D1629 = {
 						CreatedOnToolsVersion = 7.1.1;
-						DevelopmentTeam = 337Z9GG54R;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = SUN55R2645;
+						ProvisioningStyle = Manual;
 					};
 					775BEE931C1E8ECC008D1629 = {
 						CreatedOnToolsVersion = 7.1.1;
@@ -690,7 +690,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 337Z9GG54R;
+				DEVELOPMENT_TEAM = SUN55R2645;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -707,7 +707,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.toomao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "d230c334-7a11-4b46-8d34-fcba7b0b90cb";
+				PROVISIONING_PROFILE_SPECIFIER = "com.toomao+dev2016/4/26";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -720,7 +721,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 337Z9GG54R;
+				DEVELOPMENT_TEAM = SUN55R2645;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -737,7 +738,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.toomao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "d230c334-7a11-4b46-8d34-fcba7b0b90cb";
+				PROVISIONING_PROFILE_SPECIFIER = "com.toomao+dev2016/4/26";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

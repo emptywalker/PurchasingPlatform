@@ -5,11 +5,14 @@
 			<!-- <text>{{k}}</text> -->
 				<div>
 					<image src="{{list[2 * k].image}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
-					<text class='text' style="width:{{widthHeight}}">{{list[2 * k].name}}  ￥{{list[2 * k].price}}</text>
+					<text class='textName' style="width:{{widthHeight}}">{{list[2 * k].name}} </text>
+					<text class='textPrice' style="width:{{widthHeight}}">￥{{list[2 * k].price.toFixed(fiedNum)}}</text>
 				</div>
+
 				<div if='{{list[2 * k + 1]}}'>
 					<image src="{{list[2 * k + 1].image}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
-					<text class='text' style="width:{{widthHeight}}">{{list[2 * k + 1].name}}  ￥{{list[2 * k + 1].price}} </text>
+					<text class='textName' style="width:{{widthHeight}}">{{list[2 * k + 1].name}}</text>
+					<text class='textPrice' style="width:{{widthHeight}}">￥{{list[2 * k + 1].price.toFixed(fiedNum)}}</text>
 				</div>
 			</div>
 			
@@ -28,8 +31,18 @@
 		/*padding-left: 10;*/
 		/*padding-right: 50;*/
 	},
-	.text{
+	.textName{
 		lines: 0;
+		font-size: 24;
+		padding-left: 10;
+		margin-top: 5;
+	}
+	.textPrice{
+		lines: 0;
+		color: #b41800;
+		font-size: 36;
+		padding-left: 10;
+		margin-top: 5;
 	}
 </style>
 
@@ -38,6 +51,7 @@
 		data:{
 			widthHeight: 30,
 			dWidth: 100,
+			fiedNum: 2,
 			list: [],
 			rowColList: []
 		},

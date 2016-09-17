@@ -1,9 +1,14 @@
 <template>
 	<div style="flex-direction:row;" class="wrap">
 		<div repeat="{{list}}">
-			<div>
+			<div class="content" style = "height:{{widthHeight}}; width: {{widthHeight}}">
 				<image src="{{image}}" class="imageClass"  resize='contain' style = "height:{{widthHeight}}; width: {{widthHeight}}"></image>
-				<text class='text' style="width:{{widthHeight}}">{{name}} ￥{{price}}</text>
+				<div class="textWrap" style="flex-direction:row; justify-content:space-between; width:{{widthHeight}}; height:45;">
+					<text class='nameText' >{{name}}</text>
+					<text class='priceText' >￥{{price.toFixed(fiedNum)}}</text>
+					<!-- style="width:{{widthHeight}}" -->
+				</div>
+				
 			</div>
 		</div>
 	</div>
@@ -14,14 +19,29 @@
 	.wrap{
 		margin-top: 10
 	}
-	
+	.content{
+		/*position: releative;*/
+	}
+	.textWrap{
+		position: absoult;
+		bottom: 45;
+		background-color: rgba(255,255,255,0.5);
+		margin-left: 10;
+	}
+
+
 	.imageClass{
 		background-color:#ccc;
 		margin-left: 10;
 	}
-
-	.text{
+	.nameText{
 		lines:0;
+		padding-left: 10;
+		padding-top: 6;
+	}
+	.priceText{
+		padding-right: 10;
+		padding-top: 6;
 	}
 </style>
 
@@ -29,15 +49,12 @@
 	module.exports = {
 		data:{
 			widthHeight: 30,
+			fiedNum: 2,
 			list: []
 		},
 		created: function () {
 			var deviceWidth = this.$getConfig().env.deviceWidth;
 			this.widthHeight = deviceWidth - 20;
-
-			// var length = this.list.length;
-			// this.widthHeight = (deviceWidth - 10 * (length + 1)) / length;
-			// console.log(length + '~~~~~~~~~~~~~~' + this.widthHeight);
 		}
 	}
 </script>
