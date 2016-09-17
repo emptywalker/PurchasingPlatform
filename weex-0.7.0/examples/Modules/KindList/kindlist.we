@@ -1,9 +1,9 @@
 <template>
 	<div style="background-color:red; flex-direction:row" >
 		<list class="list" style="height:{{deviceHeight}};">
-			<cell repeat="{{{k , v} in results}}">
-				<div class="item" title="{{k}}" onclick="cellDidSelected">
-					<text>{{name}}</text>
+			<cell repeat="{{(k , v) in results}}">
+				<div class="item" index="{{1}}" onclick="cellDidSelected">
+					<text>{{v.name}} </text>
 				</div>
 			</cell>
 		</list>
