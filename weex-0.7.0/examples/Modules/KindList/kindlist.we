@@ -1,15 +1,132 @@
 <template>
-	<div style="background-color:red">
-		<text class='textq'>分类列表</text>
+	<div style="background-color:red; flex-direction:row" >
+		<list class="list" style="height:{{deviceHeight}};">
+			<cell repeat="{{{k , v} in results}}">
+				<div class="item" title="{{k}}" onclick="cellDidSelected">
+					<text>{{name}}</text>
+				</div>
+			</cell>
+		</list>
+
+
+		<scroller style="width:{{contentListWidth}}; height:{{deviceHeight}};" class="scroller">
+			<div repeat="{{children}}" >
+				<div style="flex-direction: row;">
+					<img src="{{icon}}" class="img" style="width:{{imgWidth}}; height:{{imgWidth}}">
+				</div>
+				
+			</div>
+		</scroller>
+		<!-- <list id="contentList" style="height:{{deviceHeight}}; width:{{contentListWidth}};">
+			<cell repeat="{{results[0].children}}">
+				<div class="item">
+					<text>   {{name}} </text>
+				</div>
+			</cell>
+		</list> -->
+
 	</div>
 </template>
 
 <style>
-	.textq {
-		font-size: 50;
-		color: #0f0;
-		text-align: center;
-		line-height: 500;
-		background-color: #0f00ff;
+	
+	.list{
+		height: 800;
+		width: 200;
+		background-color: #efefef;
+	}
+	.item{
+		height: 100;
+		background-color: white;
+	}
+
+	.scroller{
+		background-color: yellow;
+		
+	}
+	.img{
+		/*width: 200;*/
+		/*height: 200;*/
+		background-color: rgba(100, 100, 100, 1);
 	}
 </style>
+
+<script>
+	module.exports = {
+
+		data:{
+			baseURL: '',
+			deviceHeight: 400,
+			deviceWidth: 200,
+			contentListWidth: 400,
+			imgWidth: 50,
+			results: [],
+			children: [],
+			selectedIndex: 0,
+
+		},
+
+		created: function () {
+			// body...
+			var util = require("../../util.js");
+			this.baseURL = util.serverPath();
+			this._getData();
+
+			var deviceHeight1 = this.$getConfig().env.deviceHeight;
+			var deviceWidth1 = this.$getConfig().env.deviceHeight;
+			this.deviceHeight = deviceHeight1;
+			this.deviceWidth = deviceWidth1;
+			this.contentListWidth = this.deviceWidth - 200;
+			console.log(this.contentListWidth + '----------------');
+			
+		},
+
+		methods: {
+			_getData: function () {
+				// body...
+				var stream = require("@weex-module/stream");
+				var url = this.baseURL + '/ols/1.1/stores/biz/categories';
+				var that = this;
+				// console.log(url + '--------------------');
+				stream.fetch({
+					method: 'GET',
+					url: url,
+					type: 'json'
+				}, function successed(response) {
+					if (response.status == 200) {
+
+						console.log(response.data + '111111');
+						var object = response.data;
+						console.log('2222222');
+						// try{
+							// object = JSON.parse(response.data);
+							console.log('333333');
+						// }catch(e){};
+						// console.log(object.results);
+						that.results = object.results;
+						that.children = object.results[0].children;
+						console.log('4444444');
+
+						// console.log(that.results);
+
+
+					}else{
+						console.log(response);
+					}
+				}, function failed(error) {
+					// body...
+					console.log(error);
+				});
+			},
+
+			cellDidSelected: function (e) {
+				// body...
+				var object = e.target.attr;
+				var index = object.index;
+				this.selectedIndex = index;
+				this.children = this.results[index].children;
+			}		
+		}
+	}
+	
+</script>

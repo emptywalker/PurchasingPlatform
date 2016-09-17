@@ -95,8 +95,8 @@
         var vm = this;
         vm.$on('tabBar.onClick',function(e){
           var detail= e.detail;
-          nativeLog('tabBar.onClick ' + detail.index);
-          console.log(e);
+          // nativeLog('tabBar.onClick ' + detail.index);
+          // console.log(e);
         });
       },
     }

@@ -31,7 +31,7 @@
 		created: function () {
 			var deviceWidth = this.$getConfig().env.deviceWidth;
 			this.width = deviceWidth - 40;
-			console.log(this.textdata.text)
+			// console.log(this.textdata.text)
 		}
 	}
 </script>
