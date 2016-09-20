@@ -1,8 +1,8 @@
 <template>
-	<div style="background-color:red; flex-direction:row" >
+	<div style="background-color:white; flex-direction:row" >
 		<list class="list" style="height:{{deviceHeight}};">
 			<cell repeat="{{(k , v) in results}}">
-				<div class="item" index="{{k}}" onclick="cellDidSelected">
+				<div class="item {{v.selected ? 'selectedItem':''}}" index="{{k}}" onclick="cellDidSelected">
 					<text class="itemText">{{v.name}} </text>
 				</div>
 			</cell>
@@ -32,8 +32,14 @@
 	.item{
 		height: 100;
 		background-color: white;
-		border-bottom-width: 2;
-		border-bottom-color: #b14800;
+		border-width: 2;
+		border-color: #b14800;
+	}
+	.selectedItem{
+		height: 100;
+		background-color: red;
+		border-width: 2;
+		border-color: #b14800;
 	}
 
 	.itemText{
@@ -42,10 +48,10 @@
 	}
 
 	.scroller{
-		background-color: yellow;
+		/*background-color: yellow;*/
 	}
 	.subKind{
-		background: red;
+		/*background: red;*/
 	}
 	.subText{
 		margin-top: 10;
@@ -72,6 +78,7 @@
 			results: [],
 			children: [],
 			selectedIndex: 0,
+			lastSelectedIndex: 0,
 		},
 
 		created: function () {
@@ -107,6 +114,7 @@
 						var object = response.data;
 						//从新赋值给数据源   这里有点很奇怪 我对原数据没有解析生成JSON了，可能是type的关系
 						that.results = object.results;
+						object.results[0].selected = true;
 						that.children = object.results[0].children;
 
 					}else{
@@ -122,9 +130,23 @@
 				// body...
 				var object = e.target.attr;
 				var index = object.index;
+				//两次点击同一个index   不做处理
+				if(index === this.lastSelectedIndex){
+					return;
+				}
 				this.selectedIndex = index;
 				//拿到当前分类的子分类   赋值给子分类
 				this.children = this.results[index].children;
+				this.results[index].selected = true;
+				this.results[this.lastSelectedIndex].selected = false;
+				this.lastSelectedIndex = index;
+
+				//改变当前的样式
+				console.log(object.class);
+				
+				e.target.style = "background-color: red;";
+				console.log(e.target.style);
+				// object.class = ""
 			},
 
 			//子分类被点击
