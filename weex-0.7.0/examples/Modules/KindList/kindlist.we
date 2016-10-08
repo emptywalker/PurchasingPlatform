@@ -2,12 +2,11 @@
 	<div style="background-color:white; flex-direction:row" >
 		<list class="list" style="height:{{deviceHeight}};">
 			<cell repeat="{{(k , v) in results}}">
-				<div class="item {{v.selected ? 'selectedItem':''}}" index="{{k}}" onclick="cellDidSelected">
-					<text class="itemText">{{v.name}} </text>
+				<div class="{{ v.selected ? 'selectedItem' : 'item'}}" index="{{k}}" onclick="{{cellDidSelected}}">
+					<text class="itemText"> {{v.selected + '~~~' + lastSelectedIndex}} </text>
 				</div>
 			</cell>
 		</list>
-
 
 		<scroller style="width:{{scrollertWidth}}; height:{{deviceHeight}};" class="scroller">
 			<div style="flex-direction:row;"> 
@@ -23,7 +22,6 @@
 </template>
 
 <style>
-	
 	.list{
 		height: 800;
 		width: 200;
@@ -34,12 +32,16 @@
 		background-color: white;
 		border-width: 2;
 		border-color: #b14800;
+		border-radius: 0;
+		border-style: solid;
 	}
 	.selectedItem{
 		height: 100;
-		background-color: red;
+		background-color: #0f0;
 		border-width: 2;
-		border-color: #b14800;
+		border-color: #fff;
+		border-left-width: 10;
+		border-left-color: red;
 	}
 
 	.itemText{
@@ -79,6 +81,8 @@
 			children: [],
 			selectedIndex: 0,
 			lastSelectedIndex: 0,
+			itemClass: 'item',
+			selectedItemClass: 'selectedItem',
 		},
 
 		created: function () {
@@ -114,9 +118,11 @@
 						var object = response.data;
 						//从新赋值给数据源   这里有点很奇怪 我对原数据没有解析生成JSON了，可能是type的关系
 						that.results = object.results;
-						object.results[0].selected = true;
-						that.children = object.results[0].children;
-
+						for (var i = 0; i < that.results.length; i++) {
+							that.results[i].selected = false;
+						}
+						that.results[0].selected = true;
+						that.children = that.results[0].children;
 					}else{
 						console.log(response);
 					}
@@ -130,23 +136,23 @@
 				// body...
 				var object = e.target.attr;
 				var index = object.index;
+				var that = this;
+
 				//两次点击同一个index   不做处理
 				if(index === this.lastSelectedIndex){
 					return;
 				}
-				this.selectedIndex = index;
+				// this.selectedIndex = index;
 				//拿到当前分类的子分类   赋值给子分类
 				this.children = this.results[index].children;
 				this.results[index].selected = true;
-				this.results[this.lastSelectedIndex].selected = false;
+				this.results[this.lastSelectedIndex].selected = !this.results[index].selected;
 				this.lastSelectedIndex = index;
 
 				//改变当前的样式
-				console.log(object.class);
-				
-				e.target.style = "background-color: red;";
-				console.log(e.target.style);
-				// object.class = ""
+				console.log(index    +   "   ~~~~~~~~~~~~~~~~~~    " + this.lastSelectedIndex);
+				console.log(e.target);
+				console.log(this.results);
 			},
 
 			//子分类被点击
