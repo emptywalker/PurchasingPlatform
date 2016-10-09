@@ -83,12 +83,14 @@
 			lastSelectedIndex: 0,
 			itemClass: 'item',
 			selectedItemClass: 'selectedItem',
+			bundleURL: '',
 		},
 
 		created: function () {
 			// body...
 			var util = require("../../util.js");
 			this.baseURL = util.serverPath();
+			this.bundleURL = util.bundleUrl(this);
 			this._getData();
 			//修改组件宽度
 			var deviceHeight1 = this.$getConfig().env.deviceHeight;
@@ -158,12 +160,21 @@
 			//子分类被点击
 			kindClicked: function (e) {
 				var object = e.target.attr;
-				var modal = require("@weex-module/modal");
-				modal.toast({
-					"message": "kindid  =  " + object.kindid,
-					"duration": 1,
-				});
-				console.log(object.kindid);
+				// var modal = require("@weex-module/modal");
+				// modal.toast({
+				// 	"message": "kindid  =  " + object.kindid,
+				// 	"duration": 1,
+				// });
+				// var bundleURL = this.$getConfig().bundleUrl;
+				// bundleURL = new String(bundleURL);
+				var navigator = require('@weex-module/navigator');
+				var params = {
+					'url': this.bundleURL + 'showKindProducts.js?id=' + object.kindid ,
+					'animation' : 'true',
+				};
+				// navigator.push(params, function(e){});
+				console.log(this.bundleURL);
+				console.log(params);
 			}		
 		}
 	}
