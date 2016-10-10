@@ -14,8 +14,19 @@ exports.fixedNum = function () {
 	return toFixedNum;
 }
 
+//统一设备宽度
+var deviceWidth = 750;
+exports.deviceWidth = function (thisObj) {
+	// 获取设备宽度
+	// var deviceWidth = thisObj.$getConfig().env.deviceWidth;
+	return 750;
+}
+
+
+//获取navigator URL
 var bundleUrl = '';
 exports.bundleUrl = function (thisObj) {
+
 			var dir = 'examples';
 			var bundleUrl = thisObj.$getConfig().bundleUrl;
             bundleUrl = new String(bundleUrl);
@@ -40,10 +51,11 @@ exports.bundleUrl = function (thisObj) {
               //nativeBase = 'http://' + host + '/weex_tmp/h5_render/';
               nativeBase = 'http://' + host + '/' + dir + '/build/';
             }
+            // 暂时没有理解这边路径的设置
             var h5Base = './index.html?page=./' + dir + '/build/';
             //Native端
             var base = nativeBase;
-            //H5端
+            //H5端  
             if (typeof window === 'object') {
               base = h5Base;
             }

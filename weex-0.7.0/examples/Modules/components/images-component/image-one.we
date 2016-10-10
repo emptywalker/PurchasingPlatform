@@ -20,8 +20,8 @@
 			}
 		},
 		created: function () {
-			var width = this.$getConfig().env.deviceWidth;
-			this.widthHeight = width;
+			var util = require("../../../util.js");
+			this.widthHeight = util.deviceWidth(this);
 		},
 		methods: {
 			imageClicked : function (e) {

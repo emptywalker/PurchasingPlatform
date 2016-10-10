@@ -1,9 +1,13 @@
 <template>
-	<list class="list">
-		<cell>
-			
-		</cell>
-	</list>	
+	<div style="background-color:red">
+		<text>这是一个有效的页面</text>
+		<list class="list">
+			<cell>
+				
+			</cell>
+		</list>
+	</div>
+		
 </template>
 
 <style>

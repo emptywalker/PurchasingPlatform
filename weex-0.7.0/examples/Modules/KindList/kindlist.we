@@ -93,8 +93,9 @@
 			this.bundleURL = util.bundleUrl(this);
 			this._getData();
 			//修改组件宽度
+			var util = require("../../util.js");
+			var deviceWidth1 = util.deviceWidth(this);
 			var deviceHeight1 = this.$getConfig().env.deviceHeight;
-			var deviceWidth1 = this.$getConfig().env.deviceWidth;
 			this.deviceHeight = deviceHeight1;
 			this.deviceWidth = deviceWidth1;
 			this.scrollertWidth = deviceWidth1 - 200;
@@ -167,14 +168,14 @@
 				// });
 				// var bundleURL = this.$getConfig().bundleUrl;
 				// bundleURL = new String(bundleURL);
+				var url = this.bundleURL + 'Modules/KindList/' + 'showKindProducts.js?id=' + object.kindid;
 				var navigator = require('@weex-module/navigator');
 				var params = {
-					'url': this.bundleURL + 'showKindProducts.js?id=' + object.kindid ,
+					'url': url,
 					'animation' : 'true',
 				};
 				// navigator.push(params, function(e){});
-				console.log(this.bundleURL);
-				console.log(params);
+				this.$openURL(url);
 			}		
 		}
 	}

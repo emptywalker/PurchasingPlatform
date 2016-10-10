@@ -28,14 +28,14 @@
 <script>
 	module.exports = {
 		data:{
-			width: 20,
+			width: 750,
 			height: 20,
             list: []
 		},
 		created:function () {
 			// body...
-			var deviceWidth = this.$getConfig().env.deviceWidth;
-			this.width = deviceWidth;
+			var util = require("../../../util.js");
+			this.width = util.deviceWidth(this);
 		}
 	}
 </script>

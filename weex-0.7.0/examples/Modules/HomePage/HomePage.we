@@ -1,6 +1,6 @@
 <template>
 	<scroller style="background-color:white" id="content">
-		<input class="inputText" type="text" value="我是首页的输入框" placeholder="等待你的输入...." style="width: {{deviceWidth}}}; height:50; ">
+		<input class="inputText" type="text" value="我是首页的输入框" placeholder="等待你的输入...." style="width:{{deviceWidth}}; height:60; ">
 		
 		<div id="body" repeat="{{homeList}}">
 			<!-- 滑动组件 -->
@@ -22,7 +22,9 @@
 
 <style>
 	.inputText{
-		background-color: #00f;
+		background-color: #0f0;
+		border-width: 1;
+		border-color: purple;
 	}
 </style>
 <script>
@@ -36,7 +38,7 @@
 	require("../components/text-component/text-p.we");
 	module.exports = {
 		data: {
-			deviceWidth: 640,
+			deviceWidth: 750,
 			homeList:[],
 			baseURL:''
 		},
@@ -45,8 +47,10 @@
 			// body...
 			var util = require("../../util.js");
 			this.baseURL = util.serverPath();
-			this.deviceWidth = this.$getConfig().env.deviceWidth;
+			// this.deviceWidth = this.$getConfig().env.deviceWidth;
 			this._getData();
+			console.log('--------------------' + this.deviceWidth);
+			console.log(this.$getConfig());
 		},
 
 		methods:{

@@ -72,9 +72,9 @@
 				this.rowColList.push(i);
 			}
 			//设置宽度
-			var deviceWidth = this.$getConfig().env.deviceWidth;
-			this.dWidth = deviceWidth;
-			this.widthHeight = (deviceWidth - 40)  / 3.0;
+			var util = require("../../../util.js");
+			this.dWidth = util.deviceWidth(this);
+			this.widthHeight = (this.dWidth - 40)  / 3.0;
 
 		},
 		methods: {

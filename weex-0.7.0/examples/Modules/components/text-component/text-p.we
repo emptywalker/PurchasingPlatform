@@ -29,9 +29,8 @@
 			}
 		},
 		created: function () {
-			var deviceWidth = this.$getConfig().env.deviceWidth;
-			this.width = deviceWidth - 40;
-			// console.log(this.textdata.text)
+			var util = require("../../../util.js");
+			this.width = util.deviceWidth(this) - 40;
 		}
 	}
 </script>

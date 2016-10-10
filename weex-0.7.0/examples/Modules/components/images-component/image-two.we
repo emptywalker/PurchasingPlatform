@@ -22,7 +22,8 @@
 			imagedata:[],
 		},
 		created: function () {
-			var width = this.$getConfig().env.deviceWidth;
+			var util = require("../../../util.js");
+			var width = util.deviceWidth(this);
 			this.widthHeight = (width - 30) / 2.0;
 		},
 		methods:{

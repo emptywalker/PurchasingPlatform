@@ -53,8 +53,9 @@
 			list: []
 		},
 		created: function () {
-			var deviceWidth = this.$getConfig().env.deviceWidth;
-			this.widthHeight = deviceWidth - 20;
+			var util = require("../../../util.js");
+			var width = util.deviceWidth(this);
+			this.widthHeight = width - 20;
 		}, 
 		methods: {
 			productClicked: function (e) {
