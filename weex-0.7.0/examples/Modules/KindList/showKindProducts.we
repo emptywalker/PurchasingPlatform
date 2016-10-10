@@ -1,6 +1,6 @@
 <template>
 	<div style="background-color:red">
-		<text>这是一个有效的页面</text>
+		<text>这是一个有效nsandajnsld的页面</text>
 		<list class="list">
 			<cell>
 				
@@ -15,5 +15,51 @@
 </style>
 
 <script>
+	module.exports = {
+		data: {
+			baseUrl: '',
+		},
+		created: function () {
+			// body...
+			var util = require("../../util.js");
+			this.baseUrl = util.serverPath();
+			var bundleUrl = this.$getConfig().bundleUrl;
+			console.log(bundleUrl);
+			var id = this._getUrlParams(bundleUrl, 'id');
+			this.getKindProducts(id);
+			console.log('---+++++------++++----' + id);
+		},
+		methods: {
+			_getUrlParams: function(url, key){
+				var reg = new RegExp('[?|&]' + key + '=([^&]+)');
+				var match = url.match(reg);
+				console.log('+++++++++++++++++++++++++');
+				return match && match[1];
+			},
+			getKindProducts: function(id){
+				console.log(id + '~~~~~~~~~~~~~~~~~');
+				var that = this;
+				var url = this.baseUrl + '/ols/1.1/stores/biz/listcategory?category=' + id;
+				var stream = require(@"weex-module/stream");
+
+				console.log('~~~~~~~~~~~~~~~~~' + id);
+				// stream.fetch({
+				// 	method: 'GET',
+				// 	url: url,
+				// 	type: 'json'
+				// }, function responseSuccess(response) {
+				// 	// body...
+				// 	if (response.status == 200) {
+				// 		console.log(response);
+				// 	}else{
+				// 		console.log('network error');
+				// 	}
+				// }, function failed(error) {
+				// 	// body...
+				// 	console.log(error);
+				// });
+			}
+		}
+	}
 	
 </script>

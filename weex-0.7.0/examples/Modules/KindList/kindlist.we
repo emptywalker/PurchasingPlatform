@@ -161,13 +161,6 @@
 			//子分类被点击
 			kindClicked: function (e) {
 				var object = e.target.attr;
-				// var modal = require("@weex-module/modal");
-				// modal.toast({
-				// 	"message": "kindid  =  " + object.kindid,
-				// 	"duration": 1,
-				// });
-				// var bundleURL = this.$getConfig().bundleUrl;
-				// bundleURL = new String(bundleURL);
 				var url = this.bundleURL + 'Modules/KindList/' + 'showKindProducts.js?id=' + object.kindid;
 				var navigator = require('@weex-module/navigator');
 				var params = {

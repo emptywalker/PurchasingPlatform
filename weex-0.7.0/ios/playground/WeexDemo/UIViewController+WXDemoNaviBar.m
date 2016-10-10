@@ -23,17 +23,17 @@
     NSArray *ver = [[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."];
     if ([[ver objectAtIndex:0] intValue] >= 7) {
         // iOS 7.0 or later
-        self.navigationController.navigationBar.barTintColor = WEEX_COLOR;
+        self.navigationController.navigationBar.barTintColor = TOOMAO_COLOR;
         self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
         self.navigationController.navigationBar.translucent = NO;
     }else {
         // iOS 6.1 or earlier
-        self.navigationController.navigationBar.tintColor = WEEX_COLOR;
+        self.navigationController.navigationBar.tintColor = TOOMAO_COLOR;
     }
     
     [self.navigationController.navigationBar setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
                                                                       [UIColor whiteColor], NSForegroundColorAttributeName, nil]];
-    self.navigationItem.title = @"Weex Playground";
+    self.navigationItem.title = @"土冒采购平台";//@"Weex Playground";
     
     if (self.navigationItem.leftBarButtonItem) return;
     
