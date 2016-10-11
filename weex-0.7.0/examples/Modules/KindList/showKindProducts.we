@@ -1,11 +1,14 @@
 <template>
-	<div style="background-color:red">
-		<text>这是一个有效nsandajnsld的页面</text>
-		<list class="list">
-			<cell>
-				
+	<div style="background-color:white">
+		<!-- <text>这是一个有效nsandajnsld的页面</text> -->
+		<list class="list" style="background-color: red; height: 1000">
+			<cell repeat="{{(k , v) in results}}">
+				<product-two list="{{dataArray}}"></product-two>
 			</cell>
 		</list>
+		<!-- <scroller style="background-color: red; height: 1000">
+			<product-two list="{{dataArray}}"></product-two>
+		</scroller> -->
 	</div>
 		
 </template>
@@ -15,49 +18,49 @@
 </style>
 
 <script>
+	require("../components/images-component/product-two.we");
+
 	module.exports = {
 		data: {
 			baseUrl: '',
+			dataArray: [],
 		},
 		created: function () {
 			// body...
 			var util = require("../../util.js");
 			this.baseUrl = util.serverPath();
 			var bundleUrl = this.$getConfig().bundleUrl;
-			console.log(bundleUrl);
 			var id = this._getUrlParams(bundleUrl, 'id');
 			this.getKindProducts(id);
-			console.log('---+++++------++++----' + id);
 		},
 		methods: {
 			_getUrlParams: function(url, key){
 				var reg = new RegExp('[?|&]' + key + '=([^&]+)');
 				var match = url.match(reg);
-				console.log('+++++++++++++++++++++++++');
 				return match && match[1];
 			},
 			getKindProducts: function(id){
-				console.log(id + '~~~~~~~~~~~~~~~~~');
 				var that = this;
 				var url = this.baseUrl + '/ols/1.1/stores/biz/listcategory?category=' + id;
-				var stream = require(@"weex-module/stream");
+				var stream = require("@weex-module/stream");
 
-				console.log('~~~~~~~~~~~~~~~~~' + id);
-				// stream.fetch({
-				// 	method: 'GET',
-				// 	url: url,
-				// 	type: 'json'
-				// }, function responseSuccess(response) {
-				// 	// body...
-				// 	if (response.status == 200) {
-				// 		console.log(response);
-				// 	}else{
-				// 		console.log('network error');
-				// 	}
-				// }, function failed(error) {
-				// 	// body...
-				// 	console.log(error);
-				// });
+				stream.fetch({
+					method: 'GET',
+					url: url,
+					type: 'json'
+				}, function responseSuccess(response) {
+					// body...
+					if (response.status == 200) {
+						var object = response.data;
+						that.dataArray = object.results;
+						console.log(that.dataArray);
+					}else{
+						console.log('network error');
+					}
+				}, function failed(error) {
+					// body...
+					console.log(error);
+				});
 			}
 		}
 	}

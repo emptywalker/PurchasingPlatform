@@ -47,10 +47,7 @@
 			// body...
 			var util = require("../../util.js");
 			this.baseURL = util.serverPath();
-			// this.deviceWidth = this.$getConfig().env.deviceWidth;
 			this._getData();
-			console.log('--------------------' + this.deviceWidth);
-			console.log(this.$getConfig());
 		},
 
 		methods:{
@@ -79,13 +76,6 @@
 						}catch(e){};
 
 						that.homeList = homePage;
-
-						//打印数据
-						// for (var i = 0; i < homePage.length; i++) {
-						// 	var page = homePage[i];
-						// 	console.log(page.name,  page.data);
-						// }
-
 					}else{
 						//TODO  错误处理
 						console.log('请求出错', response);
