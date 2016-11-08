@@ -2,11 +2,13 @@
 	<div style="background-color:white">
 		<!-- <text>这是一个有效nsandajnsld的页面</text> -->
 		<list class="list" style="background-color: red; height: 1000">
-			<cell repeat="{{(k , v) in results}}">
-				<product-two list="{{dataArray}}"></product-two>
+			<cell  >
+			<text>dnajksndkjasndkjnaskjndkjasndkjasnj</text>
+			<!-- repeat="{{(k , v) in results}}" -->
+				<product-two list="{{dataArray}}" style="background-color: blue"></product-two>
 			</cell>
 		</list>
-		<!-- <scroller style="background-color: red; height: 1000">
+		<!-- <scroller style="background-color: red; height: 800">
 			<product-two list="{{dataArray}}"></product-two>
 		</scroller> -->
 	</div>
@@ -52,7 +54,8 @@
 					// body...
 					if (response.status == 200) {
 						var object = response.data;
-						that.dataArray = object.results;
+						that.dataArray = object.results;//JSON.parse(data.homePageJson)
+						console.log(response);
 						console.log(that.dataArray);
 					}else{
 						console.log('network error');
