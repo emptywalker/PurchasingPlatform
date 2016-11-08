@@ -9,10 +9,13 @@
 
 ### 实现总结
 
-#### 1. 首页主要利用了`if`和`repeat`实现了类似于动态添加的效果，详细介绍[敬请期待...](...)
-当前效果 
+#### 1. 首页主要利用了`if`和`repeat`实现了类似于动态添加的效果，详细介绍[敬请期待...](...)  
 
-![weex.gif](http://upload-images.jianshu.io/upload_images/908053-6a594fe60cb7ffaa.gif?imageMogr2/auto-orient/strip)
+当前效果   
+
+![首页效果](https://github.com/emptywalker/PurchasingPlatform/blob/master/%E9%A6%96%E9%A1%B5%E6%95%88%E6%9E%9C%E5%9B%BE.gif)
+
+
 
 #### 最后，按照惯例，如果你喜欢这个项目，请留下一颗star，这是对作者最大的鼓励和支持，拜谢！！！
 
